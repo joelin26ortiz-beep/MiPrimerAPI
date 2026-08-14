@@ -18,6 +18,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+// Registro del servicio HttpClient para la API externa
+builder.Services.AddHttpClient<ExternalApiService>();
+
 var app = builder.Build();
 
 // Configuración del pipeline HTTP
