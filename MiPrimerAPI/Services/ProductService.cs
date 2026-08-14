@@ -5,12 +5,26 @@ namespace MiPrimerAPI.Services
 {
     public class ProductService
     {
-        private readonly IProductRepository _repo;
+        private readonly IProductRepository _repository;
 
-        public ProductService(IProductRepository repo) => _repo = repo;
+        public ProductService(IProductRepository repository)
+        {
+            _repository = repository;
+        }
 
-        public Task<IEnumerable<Product>> GetAllProducts() => _repo.GetAllAsync();
-        public Task<Product?> GetProductById(int id) => _repo.GetByIdAsync(id);
-        public Task CreateProduct(Product product) => _repo.AddAsync(product);
+        public async Task<IEnumerable<Product>> GetProductsAsync()
+        {
+            return await _repository.GetAllAsync();
+        }
+
+        public async Task<Product?> GetProductByIdAsync(int id)
+        {
+            return await _repository.GetByIdAsync(id);
+        }
+
+        public async Task CreateProductAsync(Product product)
+        {
+            await _repository.AddAsync(product);
+        }
     }
 }
