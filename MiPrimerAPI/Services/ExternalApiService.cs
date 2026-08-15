@@ -1,4 +1,4 @@
-using System.Net.Http.Json;
+using System.Net.Http;
 
 namespace MiPrimerAPI.Services
 {
@@ -11,11 +11,10 @@ namespace MiPrimerAPI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<object?> GetUsersAsync()
+        public async Task<string?> GetUsersAsync()
         {
-            // Consume el endpoint público de JsonPlaceholder
-            var response = await _httpClient.GetFromJsonAsync<object>("https://jsonplaceholder.typicode.com/users");
-            return response;
+            // Consumir el endpoint público permitido para el proyecto y devolver el JSON como string
+            return await _httpClient.GetStringAsync("https://jsonplaceholder.typicode.com/users");
         }
     }
 }
